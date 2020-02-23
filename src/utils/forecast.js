@@ -8,7 +8,7 @@ const forecast = (long, lat, callback) => {
         if(error) {
             callback("Unable to connect to the network", undefined)
         }else if(body.error) {
-            callback("Unable to find the location")
+            callback("Unable to find the location", undefined)
         } else {
             //console.log(body.daily.data[0].summary+' It is currently '+body.currently.temprature+' degrees out. There is a '+body.currently.precipProbability+' % chances of rain')
             callback(undefined, body.daily.data[0].summary+' It is currently '+body.currently.temperature+' degrees out. There is a '+body.currently.precipProbability+' % chances of rain. The Maximum Temprature is '+body.daily.data[0].temperatureMax+' degrees and the Minimum temprature is '+body.daily.data[0].temperatureMin+' degrees')

@@ -51,18 +51,17 @@ app.get('/weather', (req, res) => {
     const ads = req.query.address
 
     geocode(ads, (error, { latitude, longitude, location } = {}) => {
-        console.log('in app.js')
         if(error) {
-            console.log('oops there is an error')
-            return res.send(error)
+            return res.send({
+                error
+            })
         }
-        console.log('The error is: '+error)
         forecast(longitude, latitude, (error, forecastData) => {
             if(error) {
-                return res.send(error)
+                return res.send({
+                    error
+                })
             }
-            //console.log("Showing weather results for "+location)
-            //console.log('Data:'+forecastData)
             res.send({
                 location: location,
                 forecast:forecastData,
